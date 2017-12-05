@@ -15,7 +15,7 @@ import { OverridesViewModel } from './profile_overrides';
 import { ModelArranger } from './ModelArranger';
 import { ArrangeModels } from './ArrangeModels';
 import { CheckerboardMaterial } from './CheckerboardMaterial';
-import { find, forEach, endsWith, some, extend, map } from 'lodash-es';
+import { find, forEach, endsWith, some, extend, map, isNan } from 'lodash-es';
 import { Chop } from './Chop';
 
 function isDev() {
@@ -24,7 +24,7 @@ function isDev() {
 
 if ( ! isDev() && typeof(Raven) !== 'undefined' ) {
     Raven.config('https://85bd9314656d40da9249aec5a32a2b52@sentry.io/141297', {
-        release: '1.3.2',
+        release: '1.3.3',
         ignoreErrors: [
             "Failed to execute 'arc' on 'CanvasRenderingContext2D': The radius provided",
             "Cannot read property 'highlightFill' of undefined",
@@ -350,7 +350,7 @@ function SlicerViewModel(parameters) {
         $("#slicer-viewport button#duplicate").click(function(event) {
             toggleValueInputs($("#slicer-viewport .more.values div"));
             var copies = parseInt( prompt("The number of copies you want to duplicate:", 1) );
-            if (copies != NaN) {
+            if (!isNaN(copies)) {
                 let originalFilename = self.stlViewPort.selectedModel().userData.filename;
                 startLongRunning( self.stlViewPort.duplicateSelectedModel.bind(self, copies), function (models) {
                     forEach(models, function (model) {
