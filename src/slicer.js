@@ -15,7 +15,7 @@ import { OverridesViewModel } from './profile_overrides';
 import { ModelArranger } from './ModelArranger';
 import { ArrangeModels } from './ArrangeModels';
 import { CheckerboardMaterial } from './CheckerboardMaterial';
-import { find, forEach, endsWith, some, extend, map, isNan } from 'lodash-es';
+import { find, forEach, endsWith, some, extend, map, isNaN } from 'lodash-es';
 import { Chop } from './Chop';
 
 function isDev() {
